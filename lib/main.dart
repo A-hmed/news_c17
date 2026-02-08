@@ -5,6 +5,19 @@ import 'package:news_c17/ui/screens/splash/splash_screen.dart';
 import 'package:news_c17/ui/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
+///Http Request ->
+/// Link -> $baseUrl/$apiName(EndPoint)?QueryParameters(variableName=value)
+/// Link -> $baseUrl/$apiName $PathVariable
+/// Request Type -> Get - Post - PUT - PATCH - DELETE - UPDATE
+/// Body -> Json - xml - html
+/// Headers
+
+/// Http Response ->
+/// status code 200
+/// Body -> Json
+/// Headers
+
+
 void main() {
   runApp(ChangeNotifierProvider(
       create: (_) => ThemeProvider(), child: const MyApp()));
