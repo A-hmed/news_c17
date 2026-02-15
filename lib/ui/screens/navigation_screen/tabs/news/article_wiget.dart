@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:news_c17/model/articles.dart';
 import 'package:news_c17/ui/extensions/context_extensions.dart';
-import 'package:news_c17/ui/utils/app_assets.dart';
 import 'package:news_c17/ui/utils/int_extension.dart';
 
 class ArticleWidget extends StatelessWidget {
-  const ArticleWidget({super.key});
+  final Article article;
+
+  const ArticleWidget({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,8 @@ class ArticleWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              AppAssets.splashDark,
+            child: Image.network(
+              article.urlToImage ?? "",
               height: context.height * .2,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -27,19 +29,19 @@ class ArticleWidget extends StatelessWidget {
           ),
           10.verticalSpace,
           Text(
-            "40-year-old man falls 200 feet to his death while canyoneering at national park",
+            article.title ?? "",
             style: context.textTheme.bodyLarge,
           ),
           10.verticalSpace,
           Row(
             children: [
               Text(
-                "By : Jon Haworth",
+                "By : ${article.author}",
                 style: context.textTheme.labelMedium,
               ),
               Spacer(),
               Text(
-                "15 minutes ago",
+                article.publishedAt ?? "",
                 style: context.textTheme.labelMedium,
               ),
             ],

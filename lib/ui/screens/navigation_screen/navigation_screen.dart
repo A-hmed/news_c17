@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
-import 'package:news_c17/ui/screens/navigation_screen/tabs/news_tab.dart';
+import 'package:news_c17/ui/screens/navigation_screen/tabs/news/news_tab.dart';
 import 'package:news_c17/ui/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 

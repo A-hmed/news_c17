@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
 import 'package:news_c17/ui/screens/navigation_screen/navigation_screen.dart';
-import 'package:news_c17/ui/screens/splash/splash.dart';
 import 'package:news_c17/ui/utils/app_theme.dart';
 import 'package:provider/provider.dart';
+
+/// HTTP Request ->
+/// Link -> BaseUrl+ApiName(EndPoint)?QueryParameters
+/// Link -> BaseUrl+ApiName+PathVariable
+///Type -> GET - POST - PATCH - PUT - DELETE - UPDATE
+///Body(JSON)
+///Headers(Json)
+//////////////////////
+///HTTP RESPONSE ->
+/// STATUS CODES
+/// BODY(Json - html - xml)
+/// headers
 
 void main() {
   runApp(ChangeNotifierProvider(
