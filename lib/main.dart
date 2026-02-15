@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
+import 'package:news_c17/ui/screens/categories/categories_screen.dart';
 import 'package:news_c17/ui/screens/navigation/navigation_screen.dart';
 import 'package:news_c17/ui/screens/splash/splash_screen.dart';
 import 'package:news_c17/ui/utils/app_theme.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.themeMode,
 
-      home: NavigationScreen(),
+      home: CategoriesScreen(),
     );
   }
 }

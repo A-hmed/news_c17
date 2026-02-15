@@ -11,11 +11,15 @@ abstract final class ApiManager {
   static const sourcesEndPoint = "/v2/top-headlines/sources";
   static const articlesEndPoint = "/v2/everything";
 
-  static Future<List<Source>> loadSources() async {
+  static Future<List<Source>> loadSources(String categoryName) async {
     final dio = Dio();
+    // Response response =
+    //     await dio.get("$baseurl$sourcesEndPoint?apiKey=$apiKey&category=$categoryName");
     Response response =
-        await dio.get("$baseurl$sourcesEndPoint?apiKey=$apiKey");
-
+        await dio.get("$baseurl$sourcesEndPoint", queryParameters: {
+      "apiKey": apiKey,
+      "category": categoryName,
+    });
     print(
         "loadSources:response.statusCode= ${response.statusCode} response: ${response.data}");
     if (response.statusCode! >= 200 && response.statusCode! < 300) {
