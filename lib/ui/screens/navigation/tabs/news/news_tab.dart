@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:news_c17/apis/api_manager.dart';
 import 'package:news_c17/model/category.dart';
 import 'package:news_c17/model/source.dart';
 import 'package:news_c17/ui/screens/navigation/tabs/news/news_list.dart';
-import 'package:news_c17/ui/widgets/app_error_widget.dart';
+import 'package:provider/provider.dart';
 
 class NewsTab extends StatefulWidget {
   final AppCategory category;
@@ -17,23 +15,27 @@ class NewsTab extends StatefulWidget {
 }
 
 class _NewsTabState extends State<NewsTab> {
-  NewsViewModel viewModel = NewsViewModel();
+  late NewsViewModel viewModel;
+
   @override
   void initState() {
     super.initState();
-    viewModel.loadSources(widget.category.name);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      viewModel.loadSources(widget.category.name);
+    });
   }
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: viewModel.controller.stream,
-        builder: (context, snapshot){
-          if(snapshot.data == null){
-            return Center(child: CircularProgressIndicator());
-          }else {
-            return buildTabsList(snapshot.data!);
-          }
-        });
+    return ChangeNotifierProvider(
+      create: (context) => NewsViewModel(),
+      child: Builder(builder: (context) {
+        viewModel = Provider.of(context, listen: true);
+        return viewModel.sources.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : buildTabsList(viewModel.sources!);
+      }),
+    );
 
     // return FutureBuilder(
     //     future: ApiManager.loadSources(widget.category.name),
@@ -65,9 +67,8 @@ class _NewsTabState extends State<NewsTab> {
           ),
           Expanded(
             child: TabBarView(
-                children: sources
-                    .map((source) => NewsList(source: source))
-                    .toList()),
+                children:
+                sources.map((source) => NewsList(source: source)).toList()),
           )
         ],
       ),
@@ -75,12 +76,11 @@ class _NewsTabState extends State<NewsTab> {
   }
 }
 
+class NewsViewModel extends ChangeNotifier {
+  List<Source> sources = [];
 
-
-class NewsViewModel{
-  StreamController<List<Source>?> controller = StreamController();
   loadSources(String category) async {
-    var sources = await ApiManager.loadSources(category);
-    controller.add(sources);
+    sources = await ApiManager.loadSources(category);
+    notifyListeners();
   }
 }

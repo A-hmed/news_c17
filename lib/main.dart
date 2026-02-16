@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
 import 'package:news_c17/ui/screens/categories/categories_screen.dart';
 import 'package:news_c17/ui/screens/navigation/navigation_screen.dart';
+import 'package:news_c17/ui/screens/navigation/tabs/news/news_tab.dart';
 import 'package:news_c17/ui/screens/splash/splash_screen.dart';
 import 'package:news_c17/ui/utils/app_theme.dart';
 import 'package:provider/provider.dart';
