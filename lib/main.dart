@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:news_c17/data/repository/news_repository/data_sources/local_data_source/news_local_data_source.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
 import 'package:news_c17/ui/screens/categories/categories_screen.dart';
 import 'package:news_c17/ui/screens/navigation/navigation_screen.dart';
@@ -21,6 +23,8 @@ import 'package:provider/provider.dart';
 
 
 void main() {
+  Hive.initFlutter();
+  Hive.registerAdapter(SourceAdapter());
   runApp(ChangeNotifierProvider(
       create: (_) => ThemeProvider(), child: const MyApp()));
 }
