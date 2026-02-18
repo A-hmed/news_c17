@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
-import 'package:news_c17/ui/screens/navigation_screen/tabs/news/news_tab.dart';
-import 'package:news_c17/ui/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 
-class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+import '../utils/app_colors.dart';
 
-  @override
-  State<NavigationScreen> createState() => _NavigationScreenState();
-}
-
-class _NavigationScreenState extends State<NavigationScreen> {
-  late ThemeProvider themeProvider;
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    themeProvider = Provider.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("General"),
-      ),
-      body: NewsTab(),
-      drawer: buildDrawer(),
-    );
-  }
-
-  buildDrawer() {
+    ThemeProvider themeProvider = Provider.of(context);
     return Drawer(
       child: Container(
         color: AppColors.black,
@@ -76,6 +59,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ],
         ),
       ),
-    );
+    );;
   }
 }

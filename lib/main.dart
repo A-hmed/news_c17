@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_c17/ui/providers/theme_provider.dart';
-import 'package:news_c17/ui/screens/navigation_screen/navigation_screen.dart';
+import 'package:news_c17/ui/screens/categories/categories_screen.dart';
+import 'package:news_c17/ui/screens/navigation_screen/news_screen.dart';
+import 'package:news_c17/ui/screens/navigation_screen/tabs/news/news_tab.dart';
 import 'package:news_c17/ui/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: provider.themeMode,
-      home: NavigationScreen(),
+      home: CategoriesScreen(),
     );
   }
 }
