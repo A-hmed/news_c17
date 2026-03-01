@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:news_c17/model/Articles_response.dart';
-import 'package:news_c17/model/source.dart';
-import 'package:news_c17/model/sources_response.dart';
+import 'package:news_c17/data/model/articles_response.dart';
+import 'package:news_c17/data/model/remote_source.dart';
+import 'package:news_c17/data/model/sources_response.dart';
 
-import '../model/article.dart';
+import '../data/model/article.dart';
 
 abstract final class ApiManager {
   static const apiKey = "337dc2b5fe7c467aacde1b358cbe785b";
@@ -11,7 +11,7 @@ abstract final class ApiManager {
   static const sourcesEndPoint = "/v2/top-headlines/sources";
   static const articlesEndPoint = "/v2/everything";
 
-  static Future<List<Source>> loadSources(String categoryName) async {
+  static Future<List<RemoteSource>> loadSources(String categoryName) async {
     final dio = Dio();
     // Response response =
     //     await dio.get("$baseurl$sourcesEndPoint?apiKey=$apiKey&category=$categoryName");

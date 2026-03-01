@@ -1,29 +1,46 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:news_c17/model/source.dart';
+import 'package:injectable/injectable.dart';
+import 'package:news_c17/data/model/remote_source.dart';
 
-class NewsLocalDataSource {
-  Future<List<Source>?> loadSources(String categoryName) async {
+@Injectable(as: NewsLocalDataSource)
+class NewsLocalDataSourceImpl extends NewsLocalDataSource {
+  Future<List<RemoteSource>?> loadSources(String categoryName) async {
     var box = await Hive.openBox("news");
-    return box.get(categoryName) as List<Source>?;
+    return box.get(categoryName) as List<RemoteSource>?;
   }
 
-  Future<void> saveSources(String category, List<Source> sources) async {
+  Future<void> saveSources(String category, List<RemoteSource> sources) async {
     var box = await Hive.openBox("news");
     box.put(category, sources);
   }
 }
 
-class SourceAdapter extends TypeAdapter<Source> {
+class NewsLocalDataSourceImpl2 extends NewsLocalDataSource {
+  Future<List<RemoteSource>?> loadSources(String categoryName) async {}
+
+  Future<void> saveSources(String category, List<RemoteSource> sources) async {}
+}
+
+abstract class NewsLocalDataSource {
+  Future<List<RemoteSource>?> loadSources(String categoryName);
+
+  Future<void> saveSources(String category, List<RemoteSource> sources);
+}
+
+
+
+
+class SourceAdapter extends TypeAdapter<RemoteSource> {
   @override
-  Source read(BinaryReader reader) {
-    return Source.fromJson(reader.read());
+  RemoteSource read(BinaryReader reader) {
+    return RemoteSource.fromJson(reader.read());
   }
 
   @override
   int get typeId => 0;
 
   @override
-  void write(BinaryWriter writer, Source obj) {
+  void write(BinaryWriter writer, RemoteSource obj) {
     writer.write(obj.toJson());
   }
 }

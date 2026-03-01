@@ -39,6 +39,12 @@ dependencies:
   flutter_bloc: ^9.1.1
   connectivity_plus: ^7.0.0
   hive_flutter: ^1.1.0
+  retrofit: ^4.6.0
+  logger: ^2.6.0  # for logging purpose
+  json_annotation: ^4.9.0
+  retrofit_generator: ^9.6.0
+  get_it: 7.2.0
+  injectable: 2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +56,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.5
+  injectable_generator: ^2.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_c17/apis/api_manager.dart';
-import 'package:news_c17/model/article.dart';
-import 'package:news_c17/model/source.dart';
+import 'package:news_c17/data/model/article.dart';
+import 'package:news_c17/domain/model/source.dart';
 import 'package:news_c17/ui/widgets/app_error_widget.dart';
 
 import 'news_widget.dart';

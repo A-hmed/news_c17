@@ -9,6 +9,8 @@ import 'package:news_c17/ui/screens/splash/splash_screen.dart';
 import 'package:news_c17/ui/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'di/di.dart';
+
 ///Http Request ->
 /// Link -> $baseUrl/$apiName(EndPoint)?QueryParameters(variableName=value)
 /// Link -> $baseUrl/$apiName $PathVariable
@@ -23,6 +25,7 @@ import 'package:provider/provider.dart';
 
 
 void main() {
+  initDependencies();
   Hive.initFlutter();
   Hive.registerAdapter(SourceAdapter());
   runApp(ChangeNotifierProvider(

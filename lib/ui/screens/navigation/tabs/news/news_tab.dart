@@ -1,7 +1,14 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_c17/model/category.dart';
-import 'package:news_c17/model/source.dart';
+import 'package:news_c17/data/mapper/sources_mapper.dart';
+import 'package:news_c17/data/model/category.dart';
+import 'package:news_c17/data/repository/news_repository/data_sources/local_data_source/news_local_data_source.dart';
+import 'package:news_c17/data/repository/news_repository/data_sources/remote_data_sources/news_remote_data_source.dart';
+import 'package:news_c17/data/repository/news_repository/news_repository_impl.dart';
+import 'package:news_c17/di/di.dart';
+import 'package:news_c17/domain/model/source.dart';
+import 'package:news_c17/domain/usecases/load_sources_usecase.dart';
 import 'package:news_c17/ui/screens/navigation/tabs/news/news_list.dart';
 
 import '../../../../utils/resource.dart';
@@ -17,7 +24,7 @@ class NewsTab extends StatefulWidget {
 }
 
 class _NewsTabState extends State<NewsTab> {
-  late NewsViewModel viewModel = NewsViewModel();
+  late NewsViewModel viewModel = getIt();
 
   @override
   void initState() {
@@ -26,13 +33,13 @@ class _NewsTabState extends State<NewsTab> {
       viewModel.loadSources(widget.category.name);
     });
   }
+
   /// BlocProvider - BlocListener - BlocBuilder
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => viewModel,
-      child: BlocBuilder<NewsViewModel, NewsState>(
-          builder: (context, state) {
+      child: BlocBuilder<NewsViewModel, NewsState>(builder: (context, state) {
         if (state.sourcesApi.status == ApiStatus.error) {
           return Text(state.sourcesApi.errorMessage ?? "");
         } else if (state.sourcesApi.status == ApiStatus.loading) {

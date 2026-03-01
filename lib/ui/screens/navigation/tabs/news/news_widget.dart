@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_c17/model/article.dart';
+import 'package:news_c17/data/model/article.dart';
 import 'package:news_c17/ui/utils/extension/context_extension.dart';
 import 'package:news_c17/ui/utils/extension/int_extensions.dart';
 
